@@ -13,40 +13,40 @@ $(document).ready(function() {
         
     function placement1 (totalScore){
         if (q1result === "Yes"){
-            totalScore = totalScore + 0;
+            totalScore = 0;
         }
         else if (q1result === "No"){
-            totalScore === totalScore + 25;
+            totalScore = totalScore + 25;
         }
         return totalScore;
         }
         
     function placement2 (totalScore){
         if (q2result === "Slower"){
-            totalScore === 9;
+            totalScore = 9;
         }
         else if (q2result === "Faster"){
-            totalScore === 14;
+            totalScore = 14;
         }
         return totalScore;
         }
         
     function placement3 (totalScore){
         if (q3result === "Yes"){
-            totalScore === 14;
+            totalScore = 14;
         }
         else if (q2result === "Mo"){
-            totalScore === 9;
+            totalScore = 9;
         }
         return totalScore;
         }
         
     function placement4 (totalScore){
-        if (q2result === "I like Melee"){
-            totalScore === 9;
+        if (q4result === "I like Melee"){
+            totalScore = 9;
         }
-        else if (q2result === "No"){
-            totalScore === 14;
+        else if (q4result === "No"){
+            totalScore = 14;
         }
         return totalScore;
         }
@@ -68,7 +68,10 @@ $(document).ready(function() {
             alert("You should play Ultimate!");
     }
     }
-    placement4(placement3(placement2(placement1(totalScore))));
+    placement1(totalScore);
+    placement2(totalScore);
+    placement3(totalScore);
+    placement4(totalScore);
     option(totalScore);
     });
 });
