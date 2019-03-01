@@ -2,77 +2,82 @@
 
 $(document).ready(function() {
     $("button").click(function() {
-        var name = $("#name").val();
-        var techPlacement = "TBD";
+        var game = "TBD";
         var imgSrc = "https://media.giphy.com/media/22zgHX8aop488/giphy.gif";
         var q1result = $("#question1").val();
         var q2result = $("#question2").val();
         var q3result = $("#question3").val();
         var q4result = $("#question4").val();
-        var totalScore = 0;
-        
-    function placement1 (totalScore){
-        if (q1result === "Yes"){
-            totalScore = 0;
-        }
-        else if (q1result === "No"){
-            totalScore = totalScore + 25;
-        }
-        return totalScore;
-        }
-        
-    function placement2 (totalScore){
-        if (q2result === "Slower"){
-            totalScore = 9;
-        }
-        else if (q2result === "Faster"){
-            totalScore = 14;
-        }
-        return totalScore;
-        }
-        
-    function placement3 (totalScore){
-        if (q3result === "Yes"){
-            totalScore = 14;
-        }
-        else if (q2result === "Mo"){
-            totalScore = 9;
-        }
-        return totalScore;
-        }
-        
-    function placement4 (totalScore){
-        if (q4result === "I like Melee"){
-            totalScore = 9;
-        }
-        else if (q4result === "No"){
-            totalScore = 14;
-        }
-        return totalScore;
-        }
-        
-    function option(totalScore){
-        if (totalScore <= 4){
-            alert("You should play Smash 64!");
-    }
-        else if (totalScore > 4 && totalScore <= 9){
-            alert("You should play Melee!");
-    }
-        else if (totalScore > 9 && totalScore <= 14){
-            alert("You should play Brawl!");
-    }
-        else if (totalScore > 14 && totalScore <= 19){
-            alert("You should play Smash 4!");
-    }
-        else if (totalScore > 19 && totalScore <= 24){
-            alert("You should play Ultimate!");
-    }
-    }
-    placement1(totalScore);
-    placement2(totalScore);
-    placement3(totalScore);
-    placement4(totalScore);
-    option(totalScore);
+        var totalScore;
+        totalScore = placement1(q1result);
+        totalScore = placement2(q2result);
+        totalScore = placement3(q3result);
+        totalScore = placement4(q4result);
+        console.log(totalScore);
+        final(totalScore);
     });
-});
+    
+    function placement1(bias) {
+        if (bias === "Yes") {
+            return 0;
+        }
+        else if (bias === "No") {
+            return 4;
+        }
+    }
 
+    function placement2(speed) {
+        if (speed === "Slower") {
+            return 3;
+        }
+        else if (speed === "Faster") {
+            return 2;
+        }
+    }
+
+    function placement3(skill) {
+        if (skill === "Yes") {
+            return 2;
+        }
+        else if (skill === "No") {
+            return 3;
+        }
+    }
+
+    function placement4(taste) {
+        if (taste === "I like Melee") {
+            return 1;
+        }
+        else if (taste === "No") {
+            return 2;
+        }    
+    }
+    
+    function final(totalScore) {
+        var game;
+        if (totalScore === 4) {
+            game = "Ultimate";
+            display(game);
+        }
+        else if (totalScore === 3) {
+            game = "Smash 4";
+            display(game);
+        }
+        else if (totalScore === 2) {
+            game = "Brawl";
+            display(game);
+        }
+        else if (totalScore === 1) {
+            game = "Melee";
+            display(game);
+        }
+        else if (totalScore === 0) {
+            game = "Smash 64";
+            display(game);
+        }
+    }
+    
+    function display(game){
+        alert ("You got " + game);
+    }
+});
